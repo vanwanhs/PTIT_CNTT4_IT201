@@ -23,8 +23,10 @@ int main() {
         printf("\n");
     }
     int sum = 0;
+    printf("duong cheo chinh");
     for (int i = 0; i < n; i++) {
         sum += arr[i][i];
+        printf("%d ", arr[i][i]);
     }
     printf("The sum is %d\n", sum);
     return 0;
