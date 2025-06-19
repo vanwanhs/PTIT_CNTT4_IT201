@@ -29,7 +29,7 @@ int main() {
         scanf("%d", &position);
     }
 
-    for (int i = position - 1; i < n - 1; i++) {
+    for (int i = position; i < n - 1; i++) {
         arr[i] = arr[i + 1];
     }
     n--;
