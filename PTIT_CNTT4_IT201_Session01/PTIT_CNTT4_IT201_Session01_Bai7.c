@@ -2,23 +2,37 @@
 // Created by Acer on 16/06/2025.
 //
  #include <stdio.h>
-
-int main() {
-    int arr[]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,2,3,3,3,4,2,23,234,5,11,3};
-    int n = sizeof(arr)/sizeof(arr[0]);
-    int counted[100]={0};
-    for (int i = 0; i < n; i++) {
-        if (counted[i]) continue;
-        int count = 1;
-        for (int j = i+1; j < n; j++) {
-            if (arr[i] == arr[j]) {
-                count++;
-                counted[j] = 1;
+int checkDup(int numbers[], int size);
+int checkDupArray(int numbers[], int size);
+// int main() {
+//     int arr[]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,2,3,3,3,4,2,23,234,5,11,3};
+//     int n = sizeof(arr)/sizeof(arr[0]);
+//     int counted[100]={0};
+//     for (int i = 0; i < n; i++) {
+//         if (counted[i]) continue;
+//         int count = 1;
+//         for (int j = i+1; j < n; j++) {
+//             if (arr[i] == arr[j]) {
+//                 count++;
+//                 counted[j] = 1;
+//             }
+//         }
+//         printf(" gia tri %d xuat hien so lan %d\n",arr[i],count);
+//     }
+//     return 0;
+// }
+int main () {
+    int arr[]
+}
+int checkDup(int numbers[], int size) {
+    int seenNumber[1001];
+    for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
+            if (seenNumber[numbers[i]] == 1) {
+                return 1;
             }
         }
-        printf(" gia tri %d xuat hien so lan %d\n",arr[i],count);
     }
-    return 0;
 }
 // ta sử dụng vòng lặp ngoài chạy tuwf i = 0 đến n -1 ;
 // với mỗi vòng i ta chạy từ i + 1 đến n - 1 => số lần chạy giảm dần
