@@ -25,6 +25,7 @@ add_executable(Bai01 PTIT_CNTT4_IT201_Session01/PTIT_CNTT4_IT201_Session01_Bai01
         PTIT_CNTT4_IT201_Session03/PTIT_CNTT4_IT201_Session03_Bai3.c
         PTIT_CNTT4_IT201_Session03/PTIT_CNTT4_IT201_Session03_Bai4.c
         PTIT_CNTT4_IT201_Session03/PTIT_CNTT4_IT201_Session03_Bai5.c
-        PTIT_CNTT4_IT201_Session03/PTIT_CNTT4_IT201_Session03_Bai6.c)
+        PTIT_CNTT4_IT201_Session03/PTIT_CNTT4_IT201_Session03_Bai6.c
+        PTIT_CNTT4_IT201_Session03/PTIT_CNTT4_IT201_Session03_Bai7.c)
 add_executable(Bai02 PTIT_CNTT4_IT201_Session01/PTIT_CNTT4_IT201_Session01_Bai02.c)
 
