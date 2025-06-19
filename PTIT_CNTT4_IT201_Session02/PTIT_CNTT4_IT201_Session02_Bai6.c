@@ -6,12 +6,10 @@
 
 int main() {
     int n,position,number;
-    printf("please enter length of Array: ");
-    scanf("%d", &n);
-    while (n <= 0) {
-        printf("please enter length of Array: ");
+    do {
+        printf("Please enter array elements:\n");
         scanf("%d", &n);
-    }
+    } while(n<0 || n >= 100);
     int *arr = (int*)malloc((n+1) * sizeof(int));
     for (int i = 0; i < n; i++) {
         printf("please enter element %d: ", i+1);

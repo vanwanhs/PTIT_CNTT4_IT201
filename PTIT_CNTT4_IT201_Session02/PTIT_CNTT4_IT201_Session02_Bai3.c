@@ -5,8 +5,10 @@
 #include <stdlib.h>
 int main() {
     int n;
-    printf("please enter length of array:");
-    scanf("%d", &n);
+    do {
+        printf("Please enter array elements:\n");
+        scanf("%d", &n);
+    } while(n<0 || n >= 100);
     int start=0;
     int end=n-1;
     int *arr = (int *)malloc(n * sizeof(int));

@@ -6,13 +6,16 @@
 
 int main(){
     int n;
-    printf("Please enter array elements:\n");
-    scanf("%d", &n);
+   do {
+       printf("Please enter array elements:\n");
+       scanf("%d", &n);
+   } while(n<0 || n >= 100);
   int *arr = (int*)malloc(n * sizeof(int));
     if (arr == NULL) {
         printf("Memory allocation failed!\n");
         return 1;
     }
+
     int numberMax;
     for (int i = 0; i < n; i++) {
         printf("Please enter array elements: \n");
