@@ -30,10 +30,13 @@ int main() {
         }
         printf("\n");
     }
-    int limit = rows < cols ? rows : cols;
+    if (rows != cols) {
+        printf("Sorry! Array size is not same as array size!");
+        return 0;
+    }
     int mainDiagonal=0;
     int secondaryDiagonal=0;
-    for(int i=0;i<limit;i++) {
+    for(int i=0;i<rows;i++) {
         mainDiagonal+=arr[i][i];
         secondaryDiagonal+=arr[i][cols-1-i];
     }

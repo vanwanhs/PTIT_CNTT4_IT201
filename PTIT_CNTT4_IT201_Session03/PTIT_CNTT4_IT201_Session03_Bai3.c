@@ -23,12 +23,17 @@ int main() {
         printf("Please enter array number %d: ", i+1);
         scanf("%d", &arr[i]);
     }
+    int arvege = 0;
+    int count  = 0;
     for (int i = 0; i < n; i++) {
         if (arr[i]%2==0) {
             sum += arr[i];
+            count++;
         }
     }
-    printf("The sum of the array is %d", sum);
+    arvege = sum/count;
+    printf("The sum of the array is %d", arvege);
     free(arr);
     return 0;
 }
+trung bình cồng là số 1 2 3 4 ; 6 : 2

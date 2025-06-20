@@ -20,7 +20,6 @@ int main() {
         scanf("%d", &arr[i]);
     }
 
-    // Nhập số muốn tìm
     int number;
     printf("Please enter the number you want to search: ");
     scanf("%d", &number);
