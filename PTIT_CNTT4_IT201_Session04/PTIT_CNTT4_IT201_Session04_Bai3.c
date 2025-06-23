@@ -1,5 +1,5 @@
 //
-// Created by Hikari on 20/06/2025.
+// Created by Hikari on 23/06/2025.
 //
 
 
@@ -18,13 +18,13 @@ int main() {
         scanf("%d", &arr[i]);
     }
     int index = 0;
-    int max = arr[0];
+    int min = arr[0];
     for (int i = 1; i < n; i++) {
-        if (arr[i] > max) {
-            max = arr[i];
+        if (arr[i] < min) {
+            min = arr[i];
             index = i;
         }
     }
-    printf("max = %d o vi tri dau tien trong mang %d\n", max, index);
+    printf("min = %d o vi tri dau tien trong mang %d\n", min, index);
     return 0;
 }
