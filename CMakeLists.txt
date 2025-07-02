@@ -64,6 +64,17 @@ add_executable(Bai01 PTIT_CNTT4_IT201_Session01/PTIT_CNTT4_IT201_Session01_Bai01
         PTIT_CNTT4_IT201_Session08/PTIT_CNTT4_IT201_Session08_Bai5.c
         PTIT_CNTT4_IT201_Session08/PTIT_CNTT4_IT201_Session08_Bai6.c
         PTIT_CNTT4_IT201_Session08/PTIT_CNTT4_IT201_Session08_Bai7.c
-        PTIT_CNTT4_IT201_Session08/PTIT_CNTT4_IT201_Session08_Bai8.c)
+        PTIT_CNTT4_IT201_Session08/PTIT_CNTT4_IT201_Session08_Bai8.c
+        PTIT_CNTT4_IT201_Session08/dophuctap.c
+        PTIT_CNTT4_IT201_Session09/demo/Singly_Linked_List.c
+        PTIT_CNTT4_IT201_Session09/demo/add_Linked_List.c
+        PTIT_CNTT4_IT201_Session09/PTIT_CNTT4_IT201_Session09_Bai8.c
+        PTIT_CNTT4_IT201_Session09/PTIT_CNTT4_IT201_Session09_Bai1.c
+        PTIT_CNTT4_IT201_Session09/PTIT_CNTT4_IT201_Session09_Bai2.c
+        PTIT_CNTT4_IT201_Session09/PTIT_CNTT4_IT201_Session09_Bai3.c
+        PTIT_CNTT4_IT201_Session09/PTIT_CNTT4_IT201_Session09_Bai4.c
+        PTIT_CNTT4_IT201_Session09/PTIT_CNTT4_IT201_Session09_Bai5.c
+        PTIT_CNTT4_IT201_Session09/PTIT_CNTT4_IT201_Session09_Bai6.c
+        PTIT_CNTT4_IT201_Session09/PTIT_CNTT4_IT201_Session09_Bai7.c)
 add_executable(Bai02 PTIT_CNTT4_IT201_Session01/PTIT_CNTT4_IT201_Session01_Bai02.c)
 
