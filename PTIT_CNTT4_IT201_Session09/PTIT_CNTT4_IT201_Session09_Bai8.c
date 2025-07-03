@@ -1,89 +1,113 @@
-//
-// Created by Hikari on 02/07/2025.
-//
 #include <stdio.h>
 #include <stdlib.h>
-typedef struct Node
-{
+
+typedef struct Node {
     int data;
-    struct Node* next;
-}Node;
-Node* createNode(int data)
-{
-    Node* newNode=(Node*)malloc(sizeof(Node));
-    newNode->data = data;
+    struct Node *next;
+} Node;
+
+Node* createNode(int value) {
+    Node *newNode = (Node*)malloc(sizeof(Node));
+    if (!newNode) {
+        printf("Khong the cap phat bo nho\n");
+        exit(1);
+    }
+    newNode->data = value;
     newNode->next = NULL;
     return newNode;
 }
 
-Node* printList(Node* head)
-{
-    Node* current=head;
-    while (current!=NULL)
-    {
-        printf("%d->",current->data);
-        current=current->next;
+void append(Node **headRef, int value) {
+    Node *newNode = createNode(value);
+    if (*headRef == NULL) {
+        *headRef = newNode;
+        return;
     }
-    printf("NULL\n");
+    Node *cur = *headRef;
+    while (cur->next != NULL)
+        cur = cur->next;
+    cur->next = newNode;
 }
-int length(Node*head)
-{
-    int count=0;
-    Node* current=head;
-    while (current!=NULL)
-    {
-        count++;
-        current=current->next;
+
+void deleteAtPosition(Node **headRef, int position) {
+    if (*headRef == NULL || position <= 0) {
+        printf("Vi tri khong hop le\n");
+        return;
     }
-    return count;
-}
-Node* removeHead(Node* head)
-{
-    if (head==NULL)
-    {
-        return NULL;
+
+    Node *temp;
+
+    if (position == 1) {
+        temp = *headRef;
+        *headRef = (*headRef)->next;
+        free(temp);
+        return;
     }
-    Node* temp=head;
-    head=head->next;
+
+    Node *cur = *headRef;
+    int index = 1;
+
+    while (cur != NULL && index < position - 1) {
+        cur = cur->next;
+        index++;
+    }
+
+    if (cur == NULL || cur->next == NULL) {
+        printf("Vi tri vuot qua do dai danh sach\n");
+        return;
+    }
+
+    temp = cur->next;
+    cur->next = temp->next;
     free(temp);
-    return head;
 }
-Node* removeTail(Node* head)
-{
-    if (head == NULL) return NULL;
-    Node* current = head;
-    while (current->next->next != NULL) {
-        current = current->next;
+
+void printList(Node *head) {
+    while (head != NULL) {
+        printf("%d", head->data);
+        if (head->next != NULL)
+            printf("->");
+        head = head->next;
     }
-    Node* temp = current->next;
-    current->next = NULL;
-    free(temp);
-    return head;
+    printf("->NULL\n");
 }
-Node* removeAt(Node* head,int index)
-{
-    Node* current=head;
-    if (index==0) removeHead(head);
-    else if (index==length(head)-1) removeTail(head);
-    for (int i=0;i<index-1;i++)
-    {
-        current=current->next;
+
+void freeList(Node *head) {
+    while (head) {
+        Node *tmp = head;
+        head = head->next;
+        free(tmp);
     }
-    Node* temp=current->next;
-    current->next=temp->next;
-    free(temp);
-    return head;
 }
-int main()
-{
-    Node* head=createNode(1);
-    head->next=createNode(2);
-    head->next->next=createNode(3);
-    head->next->next->next=createNode(4);
-    head->next->next->next->next=createNode(5);
-    head=removeTail(head);
+
+int main() {
+    Node *head = NULL;
+    int n;
+    printf("Nhap so phan tu: ");
+    if (scanf("%d", &n) != 1 || n <= 0) {
+        printf("So khong hop le\n");
+        return 1;
+    }
+
+    printf("Nhap cac phan tu: ");
+    for (int i = 0; i < n; ++i) {
+        int x;
+        scanf("%d", &x);
+        append(&head, x);
+    }
+
+    printf("Danh sach ban dau: ");
     printList(head);
-    head=removeAt(head,2);
+
+    int position;
+    printf("Nhap vi tri muon xoa (bat dau tu 1): ");
+    scanf("%d", &position);
+
+    deleteAtPosition(&head, position);
+
+    printf("Danh sach sau khi xoa: ");
     printList(head);
+
+    freeList(head);
     return 0;
 }
