@@ -10,11 +10,11 @@
 
 typedef struct Node {
     int data;
-    struct Node *next;
+    struct Node* next;
 } Node;
 
 Node* createNode(int value) {
-    Node *newNode = (Node*)malloc(sizeof(Node));
+    Node* newNode = (Node*)malloc(sizeof(Node));
     if (!newNode) {
         printf("Khong the cap phat bo nho\n");
         exit(1);
@@ -24,61 +24,62 @@ Node* createNode(int value) {
     return newNode;
 }
 
-void append(Node **headRef, int value) {
-    Node *newNode = createNode(value);
+void append(Node** headRef, int value) {
+    Node* newNode = createNode(value);
     if (*headRef == NULL) {
         *headRef = newNode;
         return;
     }
-    Node *cur = *headRef;
+    Node* cur = *headRef;
     while (cur->next != NULL)
         cur = cur->next;
     cur->next = newNode;
 }
 
-void deleteByValue(Node **headRef, int value) {
-    while (*headRef && (*headRef)->data == value) {
-        Node *tmp = *headRef;
-        *headRef = (*headRef)->next;
-        free(tmp);
-    }
-    Node *cur = *headRef;
-    while (cur && cur->next) {
-        if (cur->next->data == value) {
-            Node *tmp = cur->next;
-            cur->next = cur->next->next;
-            free(tmp);
-        } else {
-            cur = cur->next;
-        }
-    }
-}
-
-void printList(Node *head) {
+void printList(Node* head) {
     while (head) {
         printf("%d", head->data);
-        if (head->next) printf("->");
+        if (head->next)
+            printf("->");
         head = head->next;
     }
     printf("->NULL\n");
 }
 
-void freeList(Node *head) {
+void findMiddle(Node* head) {
+    int count = 0;
+    Node* cur = head;
+    while (cur != NULL) {
+        count++;
+        cur = cur->next;
+    }
+
+    int middleIndex = count / 2 + 1;
+
+    cur = head;
+    int pos = 1;
+    while (cur != NULL && pos < middleIndex) {
+        cur = cur->next;
+        pos++;
+    }
+
+    if (cur != NULL)
+        printf("Node %d: %d\n", middleIndex, cur->data);
+}
+
+void freeList(Node* head) {
     while (head) {
-        Node *tmp = head;
+        Node* tmp = head;
         head = head->next;
         free(tmp);
     }
 }
 
 int main() {
-    Node *head = NULL;
+    Node* head = NULL;
     int n;
     printf("Nhap so phan tu: ");
-    if (scanf("%d", &n) != 1 || n <= 0) {
-        printf("So khong hop le\n");
-        return 1;
-    }
+    scanf("%d", &n);
 
     printf("Nhap cac phan tu: ");
     for (int i = 0; i < n; ++i) {
@@ -87,21 +88,8 @@ int main() {
         append(&head, x);
     }
 
-    printf("Danh sach ban dau: ");
     printList(head);
-
-    int target;
-    printf("Nhap gia tri can xoa: ");
-    scanf("%d", &target);
-
-    if (target > 0) {
-        deleteByValue(&head, target);
-        printf("Danh sach sau khi xoa: ");
-        printList(head);
-    } else {
-        printf("Gia tri khong hop le\n");
-    }
-
+    findMiddle(head);
     freeList(head);
     return 0;
 }
