@@ -1,17 +1,10 @@
-//
-// Created by Hikari on 07/07/2025.
-//
-
-
-#include <stdio.h>
-#include <stdlib.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 typedef struct Node {
     int data;
-    struct Node* next;
-    struct Node* prev;
+    struct Node *next;
+    struct Node *prev;
 } Node;
 
 Node* createNode(int value) {
@@ -22,59 +15,58 @@ Node* createNode(int value) {
     return newNode;
 }
 
+Node* addAtEnd(Node* head, int value) {
+    Node* newNode = createNode(value);
+    if (head == NULL) return newNode;
+    Node* temp = head;
+    while (temp->next != NULL) temp = temp->next;
+    temp->next = newNode;
+    newNode->prev = temp;
+    return head;
+}
+
 void printList(Node* head) {
-    while (head != NULL) {
+    while (head) {
         printf("%d", head->data);
-        if (head->next != NULL) printf(" <-> ");
+        if (head->next) printf(" <-> ");
         head = head->next;
     }
     printf(" -> NULL\n");
 }
 
 void sortList(Node* head) {
-    if (head == NULL) return;
-    Node *i, *j;
-    for (i = head; i != NULL; i = i->next) {
-        for (j = i->next; j != NULL; j = j->next) {
+    if (!head) return;
+    for (Node* i = head; i; i = i->next)
+        for (Node* j = i->next; j; j = j->next)
             if (i->data > j->data) {
-                int temp = i->data;
+                int t = i->data;
                 i->data = j->data;
-                j->data = temp;
+                j->data = t;
             }
-        }
-    }
 }
+
 void freeList(Node* head) {
-    Node* temp;
-    while (head != NULL) {
-        temp = head;
+    while (head) {
+        Node* tmp = head;
         head = head->next;
-        free(temp);
+        free(tmp);
     }
 }
+
 int main() {
-        Node *n1 = createNode(5);
-        Node *n2 = createNode(4);
-        Node *n3 = createNode(3);
-        Node *n4 = createNode(2);
-        Node *n5 = createNode(1);
-        Node *n6 = createNode(6);
-        n1->next = n2; n2->prev = n1;
-        n2->next = n3; n3->prev = n2;
-        n3->next = n4; n4->prev = n3;
-        n4->next = n5; n5->prev = n4;
-        n5->next = n6; n6->prev = n5;
-
-        Node* head = n1;
-
-        printf("Before sorting:\n");
-        printList(head);
-
-        sortList(head);
-
-        printf("After sorting:\n");
-        printList(head);
-        freeList(head);
-        return 0;
+    int n;
+    if (scanf("%d", &n) != 1 || n <= 0) return 0;
+    Node* head = NULL;
+    for (int i = 0; i < n; ++i) {
+        int v;
+        scanf("%d", &v);
+        head = addAtEnd(head, v);
     }
-
+    printf("Before sorting:\n");
+    printList(head);
+    sortList(head);
+    printf("After sorting:\n");
+    printList(head);
+    freeList(head);
+    return 0;
+}

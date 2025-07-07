@@ -9,42 +9,51 @@ typedef struct Node {
 
 Node* createNode(int value) {
     Node* newNode = (Node*)malloc(sizeof(Node));
-    newNode->data = value;
-    newNode->next = NULL;
-    newNode->prev = NULL;
+    newNode->data  = value;
+    newNode->next  = NULL;
+    newNode->prev  = NULL;
     return newNode;
 }
 
 void printList(Node* head) {
-    while (head != NULL) {
+    while (head) {
         printf("%d", head->data);
-        if (head->next != NULL) printf(" <-> ");
+        if (head->next) printf(" <-> ");
         head = head->next;
     }
     printf(" -> NULL\n");
 }
+
 void freeList(Node* head) {
-    Node* temp;
-    while (head != NULL) {
-        temp = head;
+    while (head) {
+        Node* temp = head;
         head = head->next;
         free(temp);
     }
 }
 
+Node* addAtEnd(Node* head, int value) {
+    Node* newNode = createNode(value);
+    if (!head) return newNode;
+
+    Node* temp = head;
+    while (temp->next) temp = temp->next;
+    temp->next = newNode;
+    newNode->prev = temp;
+    return head;
+}
+
 Node* deleteByValue(Node* head, int target) {
     Node* curr = head;
-    while (curr != NULL) {
+    while (curr) {
         if (curr->data == target) {
             Node* toDelete = curr;
-            if (curr->prev == NULL) {
+            if (!curr->prev) {
                 head = curr->next;
-                if (head != NULL)
-                    head->prev = NULL;
+                if (head) head->prev = NULL;
             } else {
                 curr->prev->next = curr->next;
-                if (curr->next != NULL)
-                    curr->next->prev = curr->prev;
+                if (curr->next) curr->next->prev = curr->prev;
             }
             curr = curr->next;
             free(toDelete);
@@ -55,35 +64,34 @@ Node* deleteByValue(Node* head, int target) {
     return head;
 }
 
-int main() {
-    Node *n1 = createNode(5);
-    Node *n2 = createNode(4);
-    Node *n3 = createNode(3);
-    Node *n4 = createNode(5);
-    Node *n5 = createNode(2);
-    Node *n6 = createNode(1);
-    Node *n7 = createNode(5);
+int main(void) {
+    int n;
+    printf("Enter number of elements: ");
+    if (scanf("%d", &n) != 1 || n <= 0) {
+        printf("Invalid size!\n");
+        return 1;
+    }
 
-    n1->next = n2; n2->prev = n1;
-    n2->next = n3; n3->prev = n2;
-    n3->next = n4; n4->prev = n3;
-    n4->next = n5; n5->prev = n4;
-    n5->next = n6; n6->prev = n5;
-    n6->next = n7; n7->prev = n6;
+    Node* head = NULL;
+    printf("Enter %d integers:\n", n);
+    for (int i = 0; i < n; ++i) {
+        int val;
+        scanf("%d", &val);
+        head = addAtEnd(head, val);
+    }
 
-    Node* head = n1;
-
-    printf("Original list:\n");
+    printf("\nOriginal list:\n");
     printList(head);
 
     int x;
-    printf("Enter the value to delete: ");
+    printf("\nEnter the value to delete: ");
     scanf("%d", &x);
 
     head = deleteByValue(head, x);
 
-    printf("List after deleting %d:\n", x);
+    printf("\nList after deleting %d:\n", x);
     printList(head);
+
     freeList(head);
     return 0;
 }
