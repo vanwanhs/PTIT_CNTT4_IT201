@@ -19,16 +19,12 @@ int main() {
     Node* n5 = createNode(5);
 
     n1->next = n2;
-
     n2->prev = n1;
     n2->next = n3;
-
     n3->prev = n2;
     n3->next = n4;
-
     n4->prev = n3;
     n4->next = n5;
-
     n5->prev = n4;
 
     Node* head = n1;
@@ -37,7 +33,7 @@ int main() {
     printList(head);
 
     int x;
-    printf("\n");
+    printf("Nhap so nguyen duong can them vao dau danh sach: ");
     scanf("%d", &x);
 
     if (x > 0) {

@@ -29,8 +29,6 @@ int main() {
     fourth->next = fifth;
     fifth->prev = fourth;
 
-    printf("Danh sach lien ket doi:\n");
-    printList(head);
 
     return 0;
 }
@@ -47,13 +45,3 @@ Node* createNode(int value) {
     return newNode;
 }
 
-void printList(Node* head) {
-    Node* current = head;
-    while (current != NULL) {
-        printf("%d", current->data);
-        if (current->next != NULL)
-            printf(" <-> ");
-        current = current->next;
-    }
-    printf(" <-> NULL\n");
-}
