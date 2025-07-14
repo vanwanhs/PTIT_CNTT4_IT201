@@ -36,7 +36,32 @@ void freeStack(Stack* stack) {
     }
     free(stack);
 }
-
+void push(Stack* stack, int value) {
+    Node *newNode = createNode(value);
+    if (newNode == NULL) {
+        printf("stack is full\n");
+    }
+    newNode->next = stack->head;
+    stack->head = newNode;
+}
+void pop(Stack* stack) {
+    if (stack->head == NULL) {
+        printf("stack is empty\n");
+        return;
+    }
+    //b2: xoa node tren dinh ngan xep ( xoa node dau tren danh sach)
+    Node *temp = stack->head;
+    stack->head = stack->head->next;
+    free(temp);
+}
+int peek(Stack* stack) {
+    //b1: kiem tra ngan xep trong
+    if (stack->head == NULL) {
+        printf("stack is empty\n");
+        return -1;
+    }
+    return stack->head->data;
+}
 int main() {
     Stack* myStack = createStack();
     if (myStack->head == NULL) {

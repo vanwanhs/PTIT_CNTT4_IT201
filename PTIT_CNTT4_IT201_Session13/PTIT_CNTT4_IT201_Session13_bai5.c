@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Cấu trúc Stack
 typedef struct Stack {
     int *arr;
     int top;
@@ -69,7 +68,6 @@ void reverseArray(int arr[], int n) {
     freeStack(stack);
 }
 
-// MAIN
 int main() {
     int n;
     scanf("%d", &n);

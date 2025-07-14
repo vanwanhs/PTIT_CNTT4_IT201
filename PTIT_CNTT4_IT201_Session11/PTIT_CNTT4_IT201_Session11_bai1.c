@@ -44,4 +44,3 @@ Node* createNode(int value) {
     newNode->next = NULL;
     return newNode;
 }
-
